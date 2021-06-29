@@ -57,7 +57,7 @@ function init(){
     };
     var data = [trace1];
     var layout = {
-        title: "Top Ten OTUs for Individual " +sample,
+        title: "Top Ten Bacterial Cultures Found for Individual " +sample,
         margin: {l: 100, r: 100, t: 100, b: 100},
         font: { color: "0a0a0a", family: "Arial, Helvetica, sans-serif" }
     };
@@ -76,29 +76,36 @@ function init(){
             metaPanel.append("h6").text(`${key.toUpperCase()}: ${value}`)
         })
     
-    var data = [
-      {
-        domain: { x: [0, 1], y: [0, 1] },
-        marker: {size: 28, color:'850000'},
-        value: result.wfreq,
-        title: 'Belly Button Washing Frequency<br> Scrubs per Week',
-        titlefont: {family: '"Arial, Helvetica, sans-serif'},
-        type: "indicator",
-        gauge: { axis: { visible: true, range: [0, 9] } },
-        mode: "number+gauge"
-      }
-    ];
-  
-    var layout = {
-      width: 600,
-       height: 450,
-       margin: { t: 100, r: 100, l: 100, b: 100 },
-       line: {
-       color: '600000'
-       },
-       font: { color: "0a0a0a", family: "Arial, Helvetica, sans-serif" }
-     };
-  
+        var data = [
+          {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: result.wfreq,
+            title: 'Belly Button Washing Frequency<br> Scrubs per Week',
+            titlefont: {family: '"Arial, Helvetica, sans-serif'},
+            type: "indicator",
+            mode: "number+gauge",
+            gauge: {  axis: { range: [0, 10] },
+            bar: {color:"black"},  
+            steps: [
+                {range: [0,2], color: "red"},
+                {range: [2,4], color: "orange"},
+                {range: [4,6], color: "yellow"},
+                {range: [6,8], color: "yellowgreen"},
+                {range: [8,10], color: "green"}
+             ],
+            }
+          }
+        ];
+      
+        var layout = {
+          width: 600,
+           height: 450,
+           margin: { t: 100, r: 100, l: 100, b: 100 },
+           line: {
+           color: '0a0a0a'
+           },
+           font: { color: "#0a0a0a", family: "Arial, Helvetica, sans-serif" }
+         };
     
     Plotly.newPlot("gauge", data, layout);
     });
